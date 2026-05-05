@@ -276,7 +276,7 @@
         ::-webkit-scrollbar-track { background: #141c2c; }
         ::-webkit-scrollbar-thumb { background: #4f9eff; border-radius: 10px; }
     </style>
-</head>
+</head><link rel="manifest" href="/manifest.json">
 <body>
 <div class="container">
     <div class="app-header">
@@ -451,5 +451,13 @@ Capella: MAX_WITHDRAWALS_PER_PAYLOAD: 8</pre></details>
         <div class="stat-card"><div class="label">رویدادهای واریز</div><div class="value">۱</div></div>
     `;
 </script>
-</body>
+</body><script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('Service Worker registered:', reg))
+        .catch(err => console.log('Service Worker registration failed:', err));
+    });
+  }
+</script>
 </html>
