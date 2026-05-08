@@ -1,7 +1,0 @@
-git clone https://github.com/beaconchain-com/Beaconchain.us
-cd Beaconchain.us
-git pull origin main
-# Open README.md in your editor and replace with new content
-git add README.md
-git commit -m "Update README.md with latest info"
-git push origin main
