@@ -1,0 +1,48 @@
+{
+  "name": "beaconchain-horizon",
+  "version": "2.0.1",
+  "description": "Open-source dashboard for Ethereum & Gnosis validators – real-time monitoring, 100+ validators, historical income, world rank #3 security",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "serve": "npx http-server . -p 3000",
+    "test": "echo \"No tests defined yet\"",
+    "lint": "echo \"No linter configured\"",
+    "build": "echo \"Static site, no build needed\""
+  },
+  "keywords": [
+    "ethereum",
+    "gnosis",
+    "validator",
+    "beaconchain",
+    "blockchain",
+    "dashboard",
+    "offline-first",
+    "web3"
+  ],
+  "author": {
+    "name": "Mahdi Amolimoghaddam",
+    "email": "beaconchain@beaconchain.us",
+    "url": "https://beaconchain.us"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beaconchain-com/Beaconchain.us.git"
+  },
+  "bugs": {
+    "url": "https://github.com/beaconchain-com/Beaconchain.us/issues"
+  },
+  "homepage": "https://beaconchain.us",
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/beaconchain-com"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "private": false
+}
