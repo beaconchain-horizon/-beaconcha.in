@@ -47,3 +47,13 @@ To run locally:
 git clone https://github.com/beaconchain-com/Beaconchain.us
 cd Beaconchain.us
 # open index.html in your browser
+## 🚀 Quick Start
+
+### Web (Live already at [beaconchain.us](https://beaconchain.us))
+
+To run locally:
+
+```bash
+git clone https://github.com/beaconchain-com/Beaconchain.us
+cd Beaconchain.us
+# open index.html in your browser
