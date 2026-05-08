@@ -1,7 +1,0 @@
-beaconchain-horizon/
-├── web/                 – Next.js frontend (responsive dashboard)
-├── mobile/              – React Native app (iOS & Android)
-├── backend/             – Dockerised beacon chain explorer (optional)
-├── docs/                – GDPR authorities, domain WHOIS, API collection
-├── LICENSE              – GPL-3.0 + additional terms
-└── README.md            – this file
