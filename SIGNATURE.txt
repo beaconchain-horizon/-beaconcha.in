@@ -1,0 +1,27 @@
+======================================================================
+           DIGITAL CERTIFICATE OF AUTHORSHIP & OWNERSHIP
+======================================================================
+
+Project Name : Beaconchain Horizon | Eth2 Beacon Chain Explorer
+Repository   : https://github.com/beaconchain-us/Beaconchain.us
+Domain       : https://beaconchain.us
+
+I, **Mahdi Amolimoghaddam**, the sole owner of the GitHub account 
+`beaconchain-us`, hereby irrevocably declare that I am the original 
+author, creator, and exclusive copyright holder of the software 
+work known as **Beaconchain Horizon**.
+
+This declaration is cryptographically attested by the unique hash 
+of the current production release and the act of committing this 
+file to the immutable Git history.
+
+- Current Hash (SHA-256) : 9623d169b98c9b51019b266719cf39de5c1fe31365be08fab12022048d345470
+- Date of Declaration   : 2026-05-12
+- Commit Author         : beaconchain-us (Mahdi Amolimoghaddam)
+
+Any claim by any other party, including but not limited to Bitfly 
+GmbH or bitfly explorer gmbh, is contrary to fact and law.
+
+Signed Digitally on GitHub,
+Mahdi Amolimoghaddam
+======================================================================
