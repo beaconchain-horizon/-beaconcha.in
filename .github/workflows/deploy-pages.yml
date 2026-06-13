@@ -1,0 +1,58 @@
+# Professional GitHub Actions workflow for deploying static site (Horizon Hub) to GitHub Pages.
+# No Jekyll or other generators needed – pure HTML/CSS/JS.
+# Uses the official GitHub Pages deployment actions (v4).
+
+name: Deploy Horizon Hub to GitHub Pages
+
+on:
+  # Runs on pushes to the main branch
+  push:
+    branches: ["main"]
+    paths-ignore:
+      - 'README.md'
+      - '.github/**'
+      - 'docs/**'
+
+  # Allows manual trigger from Actions tab
+  workflow_dispatch:
+
+# Sets permissions for GITHUB_TOKEN to allow Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying static files
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact (all static files from root)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository root as static site
+          path: '.'
+          # Exclude hidden files and workflow files (optional)
+          exclude: |
+            .git/
+            .github/
+            **/*.yml
+            **/*.yaml
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
