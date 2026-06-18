@@ -3,3 +3,4 @@ cd beaconcha.in/mobile
 npm install
 npx expo start
 https://play.google.com/store/apps/details?id=us.beaconchain.beaconchain
+cd /path/to/Beaconchain.us
