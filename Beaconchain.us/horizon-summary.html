@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Horizon – خلاصه کامل اکوسیستم</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: radial-gradient(ellipse at 20% 30%, #0a0c18, #010104);
+            font-family: 'Inter', system-ui, 'Segoe UI', sans-serif;
+            color: #eef2ff;
+            padding: 1.5rem;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(79, 158, 255, 0.25);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 15px 35px -12px rgba(0,0,0,0.4);
+        }
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #fff, #4f9eff, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.4rem;
+            color: #c084fc;
+            border-bottom: 1px solid #2d3a5e;
+            padding-bottom: 0.5rem;
+            margin: 1.5rem 0 0.8rem;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #a5b4fc;
+            margin: 1rem 0 0.5rem;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 700px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        ul,
+        ol {
+            padding-right: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        li {
+            margin: 0.3rem 0;
+        }
+        code {
+            background: #0f172a;
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.4rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #c084fc;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(79, 158, 255, 0.15);
+            border: 1px solid #4f9eff55;
+            padding: 0.2rem 0.7rem;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            margin: 0.2rem;
+        }
+        .badge-green {
+            background: rgba(74, 222, 128, 0.15);
+            border-color: #4ade80;
+        }
+        .badge-gold {
+            background: rgba(250, 204, 21, 0.15);
+            border-color: #facc15;
+        }
+        hr {
+            border-color: #2d3a5e;
+            margin: 1rem 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8ba0d0;
+            margin-top: 2rem;
+        }
+        a {
+            color: #4f9eff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="glass-card">
+        <h1>🔭 Horizon · خلاصه کامل اکوسیستم</h1>
+        <p style="font-size: 1.1rem; color: #bfd6ff;">
+            این سند شامل <strong>همه اطلاعات کلیدی</strong> از مکالمات ماست – مالکیت، پروژه‌ها، مدارک، مخازن، معماری و نقشه راه.
+            برای چت‌های بعدی، این فایل را به عنوان <strong>مرجع کامل</strong> ارسال کنید.
+        </p>
+        <div style="margin-top: 0.8rem;">
+            <span class="badge badge-gold">🏆 World Rank #3</span>
+            <span class="badge badge-green">🛡️ Security 10/10</span>
+            <span class="badge">📦 100K Validators</span>
+            <span class="badge">🔐 Offline‑First</span>
+            <span class="badge">⚡ 100K+ TPS Target</span>
+        </div>
+    </div>
+
+    <!-- ===== مالک و بنیان‌گذار ===== -->
+    <div class="glass-card">
+        <h2>👤 مالک و بنیان‌گذار</h2>
+        <p><strong>مهدی آملی مقدم (Mahdi Amolimoghaddam)</strong></p>
+        <ul>
+            <li>بنیان‌گذار <strong>Beaconchain‑us</strong> و <strong>beaconchain-horizon</strong></li>
+            <li>مالک دامنه‌های: <code>beaconchain.com</code> (از ۲۰۱۷)، <code>beaconchain.us</code>، <code>beaconchain.app</code>، <code>gobitfly.com</code></li>
+            <li>امضای قرارداد استاندارد (SCC) با <strong>GB Group Plc (2020)</strong> – تخصص GDPR</li>
+            <li>اولین اعتبارسنج شبکه بیکن چین – <strong>۵۶,۹۹۸ بلاک پیشنهادی</strong>، ۲۵ ولیدیتور، موجودی ۸۸۱+ ETH</li>
+            <li>فورک زنده از <strong>ethereum.org (Homestead)</strong> قبل از بایگانی</li>
+            <li>گیت‌هاب: <a href="https://github.com/Mahdiamoli">Mahdiamoli</a> | سازمان: <a href="https://github.com/beaconchain-us">Beaconchain-us</a></li>
+        </ul>
+    </div>
+
+    <!-- ===== پروژه‌های اصلی ===== -->
+    <div class="glass-card">
+        <h2>📦 پروژه‌های اصلی (مخازن)</h2>
+        <div class="grid-2">
+            <div>
+                <h3>🌐 وب و داشبورد</h3>
+                <ul>
+                    <li><strong>Beaconchain.us</strong> – داشبورد اصلی آفلاین (۱۰۰k ولیدیتور، امضای SHA‑256) <br><code>https://github.com/beaconchain-us/Beaconchain.us</code></li>
+                    <li><strong>Horizon Store</strong> – فروشگاه غیرمتمرکز API و لایسنس <br><code>https://github.com/beaconchain-horizon/horizon-store</code></li>
+                    <li><strong>Hub</strong> – بازار غیرمتمرکز مشاغل و خدمات <br><code>https://github.com/beaconchain-horizon/hub</code></li>
+                </ul>
+            </div>
+            <div>
+                <h3>⚙️ بک‌اند و هسته</h3>
+                <ul>
+                    <li><strong>horizon-core-engine</strong> – موتور اصلی Go (API، Merkle، ECDSA، SQLite) <br><code>https://github.com/beaconchain-horizon/horizon-core-engine</code></li>
+                    <li><strong>verified-merkle-lib</strong> – کتابخانه مرکل تأییدشده <br><code>https://github.com/beaconchain-us/verified-merkle-lib</code></li>
+                    <li><strong>eth2-beaconchain-explorer</strong> – فورک بک‌اند Go <br><code>https://github.com/beaconchain-us/eth2-beaconchain-explorer</code></li>
+                </ul>
+            </div>
+            <div>
+                <h3>📱 اپلیکیشن موبایل</h3>
+                <ul>
+                    <li><strong>Beaconchain Dashboard</strong> – اپ موبایل (Ionic/Angular) <br><code>https://github.com/gobitfly/eth2-beaconchain-explorer-app</code> (فورک شخصی: <code>beaconchain.mobile</code>)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>📄 بیانیه و هویت</h3>
+                <ul>
+                    <li><strong>gobitfly</strong> – بیانیه مالکیت و استقلال <br><code>https://github.com/beaconchain-horizon/gobitfly</code></li>
+                    <li><strong>I_AM_BEACONCHAIN.md</strong> – سند تاریخی</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== مدارک کلیدی ===== -->
+    <div class="glass-card">
+        <h2>📜 مدارک و اثبات‌ها</h2>
+        <ul>
+            <li><strong>اثبات ولیدیتور</strong>: ۵۶,۹۹۸ بلاک پیشنهادی – <a href="https://beaconscan.com//dashboard/LuxTFPXcHjULov8sPCJsNAdLPQkEvkf3Z1l0EwLFx7" target="_blank">داشبورد Beaconscan</a></li>
+            <li><strong>فورک تاریخی</strong>: <a href="https://github.com/Mahdiamoli/ethereum-org-mahdiamolimoghaddam">ethereum-org-mahdiamolimoghaddam</a> (قبل از بایگانی)</li>
+            <li><strong>امضای GDPR</strong>: قرارداد SCC با GBG (۲۰۲۰)</li>
+            <li><strong>Issue #3295</strong>: <a href="https://github.com/actions/starter-workflows/issues/3295" target="_blank">مقیاس‌سازی به ۱۰۰k اعتبارسنج</a> – می ۲۰۲۶</li>
+            <li><strong>دامنه‌ها</strong>: WHOIS قابل ارائه برای beaconchain.com, beaconchain.us, gobitfly.com</li>
+        </ul>
+    </div>
+
+    <!-- ===== معماری فنی ===== -->
+    <div class="glass-card">
+        <h2>🧠 معماری فنی (Core Engine)</h2>
+        <ul>
+            <li><strong>زبان</strong>: Go 1.21</li>
+            <li><strong>ذخیره‌سازی</strong>: SQLite (آفلاین) + Redis (اختیاری)</li>
+            <li><strong>رمزنگاری</strong>: درخت مرکل (Merkle Tree)، ECDSA (P‑256)، SHA‑256</li>
+            <li><strong>لایسنس</strong>: PrepaidPackage – بسته‌های حجمی با برگ‌های یکبارمصرف</li>
+            <li><strong>APIها</strong>: <code>/init-keys</code>, <code>/validators</code>, <code>/license/generate</code>, <code>/licenses</code>, <code>/verify</code>, <code>/health</code></li>
+            <li><strong>تأیید جهانی</strong>: endpoint <code>/verify</code> برای هر هاب (فروشگاه، صرافی، ...)</li>
+            <li><strong>امضای دیجیتال صفحه</strong>: SHA‑256 page fingerprint</li>
+            <li><strong>PWA</strong>: Service Worker + manifest.json</li>
+        </ul>
+    </div>
+
+    <!-- ===== درآمدزایی ===== -->
+    <div class="glass-card">
+        <h2>💰 مدل درآمدزایی</h2>
+        <ul>
+            <li><strong>بسته‌های API</strong>:
+                <ul>
+                    <li>Basic: ۰.۰۵ ETH/ماه – ۵ IP</li>
+                    <li>Pro: ۰.۲ ETH/ماه – ۲۰ IP + پشتیبانی</li>
+                    <li>Enterprise: ۰.۵ ETH/ماه – نامحدود + SLA</li>
+                </ul>
+            </li>
+            <li><strong>کیف پول رسمی</strong>: <code>0x4E94F10F0a34a0DF229e68d5902644046258D678</code> (ETH / USDC / BNB)</li>
+            <li><strong>لایسنس تجاری</strong>: فروش کد سفارشی (White‑label) با قرارداد سالانه</li>
+            <li><strong>مشاوره و پیاده‌سازی</strong>: برای شرکت‌ها و صرافی‌ها</li>
+        </ul>
+    </div>
+
+    <!-- ===== دامنه‌ها و زیرساخت ===== -->
+    <div class="glass-card">
+        <h2>🌐 دامنه‌ها و زیرساخت</h2>
+        <ul>
+            <li><strong>beaconchain.com</strong> – برند اصلی (از ۲۰۱۷)</li>
+            <li><strong>beaconchain.us</strong> – داشبورد اصلی</li>
+            <li><strong>beaconchain.app</strong> – برند فروشگاه</li>
+            <li><strong>gobitfly.com</strong> – با SSL فعال</li>
+            <li><strong>سرور</strong>: Hetzner (آلمان) – VPS با Docker + Nginx + SSL</li>
+            <li><strong>دامنه ابری</strong>: <code>core.beaconchain.us</code> برای Core Engine (قابل استقرار)</li>
+        </ul>
+    </div>
+
+    <!-- ===== وضعیت فعلی و نقشه راه ===== -->
+    <div class="glass-card">
+        <h2>🚀 وضعیت فعلی و نقشه راه</h2>
+        <div class="grid-2">
+            <div>
+                <h3>✅ انجام‌شده</h3>
+                <ul>
+                    <li>Core Engine (API + Merkle + ECDSA + SQLite)</li>
+                    <li>داشبورد آفلاین (۱۰۰k ولیدیتور)</li>
+                    <li>کتابخانه verified-merkle-lib</li>
+                    <li>فروشگاه Horizon Store (دمو)</li>
+                    <li>بیانیه مالکیت (gobitfly)</li>
+                    <li>سند I_AM_BEACONCHAIN.md</li>
+                    <li>امضای SCC با GBG</li>
+                </ul>
+            </div>
+            <div>
+                <h3>🚧 در حال توسعه</h3>
+                <ul>
+                    <li>Horizon Hub (بازار غیرمتمرکز)</li>
+                    <li>اتصال Core Engine به داده‌های زنده بیکن چین</li>
+                    <li>استقرار Core روی <code>core.beaconchain.us</code></li>
+                    <li>تکمیل Webhook برای CI/CD</li>
+                    <li>انتشار SDK برای Go, Java, Python, JS</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== لینک‌های سریع ===== -->
+    <div class="glass-card">
+        <h2>🔗 لینک‌های سریع</h2>
+        <ul>
+            <li><strong>سازمان اصلی</strong>: <a href="https://github.com/beaconchain-us">github.com/beaconchain-us</a></li>
+            <li><strong>سازمان هورایزن</strong>: <a href="https://github.com/beaconchain-horizon">github.com/beaconchain-horizon</a></li>
+            <li><strong>داشبورد زنده</strong>: <a href="https://beaconchain.us">beaconchain.us</a></li>
+            <li><strong>بیانیه استقلال</strong>: <a href="https://github.com/beaconchain-horizon/gobitfly">gobitfly</a></li>
+            <li><strong>مدرک ولیدیتور</strong>: <a href="https://beaconscan.com//dashboard/LuxTFPXcHjULov8sPCJsNAdLPQkEvkf3Z1l0EwLFx7">Beaconscan Dashboard</a></li>
+            <li><strong>Issue 3295</strong>: <a href="https://github.com/actions/starter-workflows/issues/3295">مقیاس‌سازی ۱۰۰k</a></li>
+        </ul>
+    </div>
+
+    <!-- ===== داده‌های ولیدیتور (خلاصه) ===== -->
+    <div class="glass-card">
+        <h2>📊 خلاصه داده‌های ولیدیتور (از Beaconscan)</h2>
+        <ul>
+            <li><strong>تعداد ولیدیتورها</strong>: ۲۵</li>
+            <li><strong>موجودی کل</strong>: ۸۸۱.۳۷۸۷ ETH</li>
+            <li><strong>درآمد کل</strong>: ۱۱۷.۰۱۳۶ ETH</li>
+            <li><strong>بلاک‌های پیشنهادی</strong>: ۵۶,۹۹۸</li>
+            <li><strong>اولین ولیدیتور</strong>: Index 0 (فعال از دسامبر ۲۰۲۰)</li>
+            <li><strong>فایل داده</strong>: <code>validators.json</code> (۲۴ رکورد فعال)</li>
+        </ul>
+        <p style="font-size:0.8rem; color:#8ba0d0;">این داده‌ها در مخزن <code>horizon-validator-data</code> یا به‌صورت فایل JSON در کنار داشبورد ذخیره شده‌اند.</p>
+    </div>
+
+    <!-- ===== برای چت بعدی ===== -->
+    <div class="glass-card" style="border-color: #c084fc;">
+        <h2>📌 برای چت بعدی</h2>
+        <p>این فایل را در چت بعدی <strong>کپی و ارسال کنید</strong>. نیازی به توضیح دوباره نیست. تمام اطلاعات کلیدی در اینجا جمع‌آوری شده است.</p>
+        <p style="font-size:0.85rem; margin-top:0.5rem;">
+            <span class="badge">✅ مالک و بنیان‌گذار: مهدی آملی مقدم</span>
+            <span class="badge">✅ ۶ مخزن اصلی</span>
+            <span class="badge">✅ مدارک کامل</span>
+            <span class="badge">✅ معماری Core Engine</span>
+            <span class="badge">✅ مدل درآمدزایی</span>
+            <span class="badge">✅ نقشه راه</span>
+        </p>
+        <hr>
+        <p style="font-size:0.75rem; color:#8ba0d0;">
+            <i class="fas fa-fingerprint"></i> Horizon · Sovereign by Design · © ۲۰۲۶ مهدی آملی مقدم
+        </p>
+    </div>
+
+    <div class="footer">
+        این سند به‌روزرسانی شده و شامل تمام اطلاعات کلیدی از ابتدای مکالمات ماست.<br>
+        برای چت‌های بعدی، این فایل را به عنوان مرجع کامل ارسال کنید.
+    </div>
+</div>
+</body>
+</html>
