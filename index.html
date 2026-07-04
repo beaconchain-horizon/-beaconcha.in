@@ -1,515 +1,315 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Beaconchain Horizon - World #3 Blockchain Monitoring | 100K Validators | Security 10/10">
-    <meta name="theme-color" content="#0a0f1e">
-    <meta name="author" content="Mahdi Amolimoghaddam">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self'; img-src 'self' data: https:; frame-src 'none';">
-    <title>Horizon Store | Official Beaconchain</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: radial-gradient(circle at 10% 20%, #0a0f1e, #05070f);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: #eef2ff;
-            padding: 1.5rem;
-        }
-        .container { max-width: 1800px; margin: 0 auto; }
-        .app-header {
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
-            gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(100,150,255,0.3);
-        }
-        .logo-text h1 {
-            font-size: 1.8rem; font-weight: 800;
-            background: linear-gradient(135deg, #fff, #4f9eff, #c084fc);
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-        .logo-text p { font-size: 0.75rem; color: #8fa2dc; }
-        .badge-group { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-        .badge {
-            background: rgba(79,158,255,0.15); backdrop-filter: blur(4px);
-            padding: 0.4rem 0.8rem; border-radius: 60px; font-size: 0.7rem;
-            font-weight: 600; border: 1px solid rgba(79,158,255,0.4);
-        }
-        .badge i { margin-left: 5px; }
-        .grid-3col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; margin-bottom: 1.5rem; }
-        .card {
-            background: rgba(20,24,36,0.7); backdrop-filter: blur(10px); border-radius: 1.2rem;
-            padding: 1.2rem; border: 1px solid rgba(255,255,255,0.08); transition: 0.2s;
-        }
-        .card:hover { border-color: rgba(79,158,255,0.3); background: rgba(28,32,48,0.85); }
-        .card h3 {
-            font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;
-            display: flex; align-items: center; gap: 0.5rem;
-            border-right: 3px solid #4f9eff; padding-right: 0.7rem;
-        }
-        .stat-number { font-size: 2rem; font-weight: 800; color: #c084fc; }
-        .stat-label { font-size: 0.7rem; color: #9bb2ff; }
-        .btn {
-            padding: 0.6rem 1.5rem; border-radius: 2rem; border: none;
-            font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.3s;
-            background: #4f9eff; color: #fff;
-        }
-        .btn:hover { background: #3b7edb; transform: translateY(-2px); }
-        .btn-outline { background: transparent; border: 2px solid #4f9eff; color: #4f9eff; }
-        .btn-outline:hover { background: #4f9eff; color: #fff; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
-        .product-card {
-            background: rgba(20,24,36,0.5); border-radius: 1.2rem; padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: 0.3s;
-        }
-        .product-card:hover { border-color: #4f9eff; transform: translateY(-4px); }
-        .product-card .price { font-size: 1.8rem; font-weight: 800; color: #c084fc; }
-        .product-card .old-price { font-size: 0.9rem; color: #f87171; text-decoration: line-through; }
-        .product-card .label { font-size: 0.85rem; color: #9bb2ff; margin: 0.5rem 0; }
-        .wallet-box {
-            background: #0b0e1a; border-radius: 1rem; padding: 1rem; margin: 1rem 0;
-            word-break: break-all; font-family: monospace; border: 1px solid #4f9eff;
-        }
-        .news-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-        .news-item { background: rgba(20,24,36,0.5); padding: 1rem; border-radius: 1rem; border-left: 3px solid #4f9eff; transition: 0.3s; }
-        .news-item:hover { background: rgba(28,32,48,0.8); }
-        .news-item a { color: #bfd6ff; text-decoration: none; font-weight: 500; }
-        .news-item a:hover { color: #fff; }
-        .footer {
-            margin-top: 2rem; background: rgba(0,0,0,0.4); border-radius: 1rem; padding: 1.5rem;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; font-size: 0.7rem;
-        }
-        .footer-section h4 { font-size: 1rem; margin-bottom: 0.8rem; color: #bfd6ff; }
-        .footer-section a { color: #a4bcff; text-decoration: none; display: inline-block; margin: 0.2rem 0; }
-        .footer-section a:hover { color: #fff; }
-        .ownership-note { font-size: 0.65rem; margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px solid rgba(255,255,255,0.1); color: #99a9dd; }
-        .search-box { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .search-box input {
-            flex: 1; padding: 0.6rem 1rem; border-radius: 2rem; border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.5); color: white; font-size: 0.8rem; min-width: 200px;
-        }
-        .search-box input:focus { outline: none; border-color: #4f9eff; }
-        .search-box button {
-            background: #2b3550; border: none; color: white; padding: 0.5rem 1.2rem;
-            border-radius: 2rem; cursor: pointer; transition: 0.2s;
-        }
-        .search-box button:hover { background: #4f46e5; }
-        .validator-list-container { height: 400px; overflow-y: auto; background: rgba(0,0,0,0.3); border-radius: 1rem; border: 1px solid rgba(255,255,255,0.05); }
-        .validator-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.75rem; }
-        .validator-item:hover { background: rgba(79,158,255,0.1); }
-        .validator-index { font-weight: 700; background: #1e2538; padding: 0.2rem 0.6rem; border-radius: 20px; font-family: monospace; }
-        .status-online { color: #4ade80; }
-        .status-offline { color: #f87171; }
-        .status-pending { color: #facc15; }
-        .balance { font-family: monospace; background: #2a2d3e; padding: 0.2rem 0.5rem; border-radius: 20px; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
-        .modal.active { display: flex; }
-        .modal-content { background: #1a1f30; padding: 2rem; border-radius: 1.5rem; max-width: 500px; width: 90%; border: 1px solid #4f9eff; }
-        .modal-content input { width: 100%; padding: 0.6rem 1rem; margin: 0.5rem 0; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; }
-        .modal-content .btn { width: 100%; margin-top: 0.5rem; }
-        .digital-signature-box { margin-top: 2rem; text-align: center; background: #0a0f1e; border: 1px solid #4f9eff; border-radius: 1rem; padding: 1.5rem; }
-        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .profile-grid input, .profile-grid textarea { width: 100%; padding: 0.6rem 1rem; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; }
-        .profile-grid label { font-size: 0.7rem; color: #9bb2ff; display: block; margin-bottom: 0.2rem; }
-        .profile-grid textarea { resize: vertical; font-family: inherit; }
-        .bio-card { background: rgba(79,158,255,0.05); border: 1px solid rgba(79,158,255,0.2); }
-        .bio-card h3 { color: #c084fc; }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: #141c2c; }
-        ::-webkit-scrollbar-thumb { background: #4f9eff; border-radius: 10px; }
-        @media (max-width: 768px) { body { padding: 1rem; } .validator-item { flex-direction: column; align-items: flex-start; gap: 0.3rem; } .profile-grid { grid-template-columns: 1fr; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizon Store · فروشگاه واقعی</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: radial-gradient(circle at 10% 20%, #0a0f1e, #03050a);
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #eef2ff;
+      padding: 1.2rem;
+      min-height: 100vh;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .glass {
+      background: rgba(12,18,28,0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      border: 1px solid rgba(79,158,255,0.2);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .flex { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+    .badge {
+      background: rgba(79,158,255,0.15);
+      border: 1px solid #4f9eff44;
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      display: inline-block;
+    }
+    .btn {
+      background: #4f9eff;
+      border: none;
+      padding: 0.6rem 1.8rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      color: #0a0f1e;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn:hover { background: #c084fc; transform: scale(1.03); }
+    .btn-outline { background: transparent; border: 1px solid #4f9eff55; color: #eef2ff; }
+    .btn-outline:hover { background: #4f9eff22; }
+    .btn-danger { background: #f87171; color: #0a0f1e; }
+    .btn-danger:hover { background: #ef4444; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .product-card {
+      background: rgba(20,24,36,0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      transition: 0.2s;
+    }
+    .product-card:hover { border-color: #4f9eff; transform: translateY(-4px); }
+    .product-card .icon { font-size: 2.5rem; color: #4f9eff; }
+    .product-card .name { font-weight: 700; margin: 0.3rem 0; }
+    .product-card .price { color: #c084fc; font-weight: 700; font-size: 1.1rem; }
+    .uuid-box {
+      background: #0f172a;
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      font-family: monospace;
+      border: 1px solid #4f9eff;
+      display: inline-block;
+      direction: ltr;
+    }
+    .log-item {
+      background: #0f172a;
+      border-radius: 0.8rem;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem 0;
+      border-right: 4px solid #4f9eff;
+      font-size: 0.8rem;
+    }
+    .log-time { color: #8fa2dc; font-size: 0.65rem; }
+    .status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-left: 6px; }
+    .status-active { background: #4ade80; }
+    .status-inactive { background: #f87171; }
+    .wallet-address {
+      background: #0f172a;
+      border-radius: 2rem;
+      padding: 0.4rem 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      border: 1px solid #4f9eff55;
+    }
+    @media (max-width: 640px) { body { padding: 0.8rem; } .glass { padding: 1rem; } }
+  </style>
 </head>
 <body>
-<div class="container" id="mainContent">
-    <!-- ===== HEADER ===== -->
-    <header class="app-header">
-        <div class="logo-text">
-            <h1>🔭 Horizon Store</h1>
-            <p>Official Beaconchain · World #3 · 100K+ Validators · Security 10/10</p>
-        </div>
-        <div class="badge-group">
-            <a href="#pricing" class="badge"><i class="fas fa-trophy"></i> Rank #3</a>
-            <a href="#pricing" class="badge"><i class="fas fa-shield-alt"></i> Security 10/10</a>
-            <a href="#validators" class="badge"><i class="fas fa-chart-line"></i> 100K Validators</a>
-            <button class="badge" onclick="openModal('login')" style="cursor:pointer;"><i class="fas fa-user"></i> ورود / ثبت‌نام</button>
-        </div>
-    </header>
+<div class="container">
 
-    <!-- ===== NEWS SECTION ===== -->
-    <div class="news-section">
-        <div class="news-item"><a href="https://cointelegraph.com/" target="_blank"><i class="fas fa-newspaper"></i> CoinTelegraph</a></div>
-        <div class="news-item"><a href="https://www.coindesk.com/" target="_blank"><i class="fas fa-newspaper"></i> CoinDesk</a></div>
-        <div class="news-item"><a href="https://u.today/" target="_blank"><i class="fas fa-newspaper"></i> U.Today</a></div>
-        <div class="news-item"><a href="https://www.bloomberg.com/crypto" target="_blank"><i class="fas fa-newspaper"></i> Bloomberg Crypto</a></div>
-        <div class="news-item"><a href="https://decrypt.co/" target="_blank"><i class="fas fa-newspaper"></i> Decrypt</a></div>
-        <div class="news-item"><a href="https://www.theblock.co/" target="_blank"><i class="fas fa-newspaper"></i> The Block</a></div>
+  <!-- HEADER -->
+  <div class="glass">
+    <div class="flex">
+      <div>
+        <h1 style="font-size:1.8rem; background:linear-gradient(135deg,#fff,#4f9eff,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">
+          <i class="fas fa-store"></i> Horizon Store
+        </h1>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.3rem;">
+          <span class="badge"><i class="fas fa-shield-alt"></i> GDPR · SCC</span>
+          <span class="badge"><i class="fas fa-lock"></i> آفلاین‑اول</span>
+          <span class="badge"><i class="fas fa-coins"></i> پرداخت با ETH</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;">
+        <span class="wallet-address" id="walletDisplay">🔴 ولت متصل نیست</span>
+        <button class="btn" id="connectBtn"><i class="fas fa-wallet"></i> اتصال ولت</button>
+      </div>
     </div>
+  </div>
 
-    <!-- ===== PRICING (خرید مشتری فعال) ===== -->
-    <h2 id="pricing" style="margin: 1.5rem 0 1rem 0;"><i class="fas fa-tags"></i> قیمت‌گذاری رسمی</h2>
-    <div class="product-grid">
-        <div class="product-card">
-            <div class="price">$7.00</div>
-            <div class="old-price">$5.20</div>
-            <div class="label">پکیج پایه API · ۱۰۰ درخواست</div>
-            <button class="btn" onclick="buyProduct('Basic', 7)">خرید</button>
-        </div>
-        <div class="product-card">
-            <div class="price">$49.00</div>
-            <div class="old-price">$39.00</div>
-            <div class="label">پکیج حرفه‌ای API · ۱,۰۰۰ درخواست</div>
-            <button class="btn" onclick="buyProduct('Pro', 49)">خرید</button>
-        </div>
-        <div class="product-card featured" style="border-color:#c084fc;">
-            <div class="price">$320.00</div>
-            <div class="old-price">$260.00</div>
-            <div class="label">پکیج سازمانی API · ۱۰,۰۰۰ درخواست</div>
-            <button class="btn" onclick="buyProduct('Enterprise', 320)">خرید</button>
-        </div>
-        <div class="product-card">
-            <div class="price">$15.00</div>
-            <div class="old-price">$13.00</div>
-            <div class="label">آگهی استخدام · ۳۰ روز</div>
-            <button class="btn" onclick="buyProduct('Ad-Job', 15)">ثبت</button>
-        </div>
-        <div class="product-card">
-            <div class="price">$25.00</div>
-            <div class="old-price">$20.80</div>
-            <div class="label">آگهی محصول دیجیتال</div>
-            <button class="btn" onclick="buyProduct('Ad-Product', 25)">ثبت</button>
-        </div>
-        <div class="product-card">
-            <div class="price">$10.00</div>
-            <div class="old-price">$7.80</div>
-            <div class="label">آگهی خدمات آزاد</div>
-            <button class="btn" onclick="buyProduct('Ad-Service', 10)">ثبت</button>
-        </div>
+  <!-- محصولات -->
+  <div class="glass">
+    <h2 style="font-size:1.2rem;"><i class="fas fa-boxes"></i> محصولات</h2>
+    <div class="grid" id="productGrid">
+      <!-- توسط JS پر می‌شود -->
     </div>
+  </div>
 
-    <!-- ===== ACQUISITION ===== -->
-    <h2 style="margin: 2rem 0 1rem 0;"><i class="fas fa-gem"></i> واگذاری کامل پلتفرم</h2>
-    <div class="product-grid">
-        <div class="product-card" style="border-color:#4f9eff;">
-            <div class="price">$3M – $5M</div>
-            <div class="label">واگذاری Core · کد کامل + برند Horizon</div>
-            <button class="btn btn-outline" onclick="contactSales('Core')">درخواست مشاوره</button>
-        </div>
-        <div class="product-card" style="border-color:#c084fc; background:rgba(192,132,252,0.05);">
-            <div class="price">$5M – $10M</div>
-            <div class="label">⭐ واگذاری Standard · Core + ۶ ماه پشتیبانی</div>
-            <button class="btn" onclick="contactSales('Standard')">درخواست مشاوره</button>
-        </div>
-        <div class="product-card" style="border-color:#facc15;">
-            <div class="price">$10M – $15M</div>
-            <div class="label">🚀 واگذاری Enterprise · + مقیاس‌سازی به ۱M TPS</div>
-            <button class="btn btn-outline" onclick="contactSales('Enterprise')">درخواست مشاوره</button>
-        </div>
+  <!-- قیمت‌های لحظه‌ای -->
+  <div class="glass">
+    <h2 style="font-size:1.2rem;"><i class="fas fa-chart-line"></i> قیمت‌های لحظه‌ای</h2>
+    <div id="priceDisplay" style="display:flex; flex-wrap:wrap; gap:1.5rem; margin-top:0.5rem;">
+      <div>BTC: <span id="btcPrice">—</span></div>
+      <div>ETH: <span id="ethPrice">—</span></div>
+      <div>USD: <span id="usdPrice">—</span></div>
     </div>
+  </div>
 
-    <!-- ===== WALLET ===== -->
-    <div class="card" style="border: 1px solid #4f9eff; margin-top: 1.5rem;">
-        <h3><i class="fas fa-coins"></i> پرداخت با ارز دیجیتال</h3>
-        <p>مبلغ را به کیف پول زیر ارسال کنید و پس از تأیید، API Key خود را دریافت کنید.</p>
-        <div class="wallet-box">
-            <span style="font-size:0.8rem;">ETH / USDC Wallet:</span><br>
-            <code style="font-size:1.2rem;">0x4E94F10F0a34a0DF229e68d5902644046258D678</code>
-        </div>
-        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-            <div><strong>پشتیبانی:</strong> <a href="mailto:beaconchain@beaconchain.us" style="color:#4f9eff;">beaconchain@beaconchain.us</a></div>
-            <div><strong>تلگرام:</strong> <a href="https://t.me/Beaconchain_horizon" target="_blank" style="color:#4f9eff;">@Beaconchain_horizon</a></div>
-        </div>
+  <!-- وضعیت ولیدیتورها -->
+  <div class="glass">
+    <h2 style="font-size:1.2rem;"><i class="fas fa-shield-alt"></i> ولیدیتورها</h2>
+    <div id="validatorStatus" style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:0.5rem;">
+      <span class="badge">تعداد: ۲۴</span>
+      <span class="badge">موجودی کل: ۸۸۱.۳۷ ETH</span>
+      <span class="badge">درآمد کل: ۱۱۶.۹۷ ETH</span>
+      <span class="badge">بلاک‌ها: ۵۶,۹۹۸</span>
     </div>
+  </div>
 
-    <!-- ===== VALIDATOR DASHBOARD ===== -->
-    <div class="card" id="validators" style="margin-top: 1.5rem;">
-        <h3><i class="fas fa-list"></i> Validator Dashboard (100,000+ Validators)</h3>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="جستجوی شماره اعتبارسنج...">
-            <button id="resetBtn"><i class="fas fa-sync-alt"></i> Reset</button>
-        </div>
-        <div class="validator-list-container" id="validatorContainer">
-            <div id="validatorList"></div>
-        </div>
-        <div class="stats" style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:0.8rem;">
-            <div><span class="stat-label">Total:</span> <strong id="totalValidators">0</strong></div>
-            <div><span class="status-online">🟢 Online:</span> <strong id="onlineCount">0</strong></div>
-            <div><span class="status-offline">🔴 Offline:</span> <strong id="offlineCount">0</strong></div>
-            <div><span class="stat-label">Avg Balance:</span> <strong id="avgBalance">0 ETH</strong></div>
-        </div>
+  <!-- لاگ تراکنش‌ها -->
+  <div class="glass">
+    <h2 style="font-size:1.2rem;"><i class="fas fa-history"></i> تراکنش‌های اخیر</h2>
+    <div id="logContainer">
+      <div class="log-item"><span>🟢 فروش لایسنس (۰.۰۰۲ ETH) — تأییدشده</span><div class="log-time">۱۴:۳۲ · UUID: 2ABA...CB545</div></div>
+      <div class="log-item"><span>🟡 خرید Horizon Wallet (رایگان) — در انتظار</span><div class="log-time">۱۴:۲۸ · UUID: 7F3A...C91E</div></div>
     </div>
+    <button class="btn btn-outline" id="addTxBtn" style="margin-top:0.5rem;"><i class="fas fa-plus"></i> افزودن تراکنش نمونه</button>
+  </div>
 
-    <!-- ===== USER PROFILE SECTION ===== -->
-    <div class="card" id="profileSection" style="margin-top:1.5rem;">
-        <h3><i class="fas fa-id-card"></i> پروفایل کاربر</h3>
-        <div class="profile-grid">
-            <div>
-                <label>نام کاربری</label>
-                <input type="text" id="profileUsername" value="Beaconchain_horizon" readonly>
-            </div>
-            <div>
-                <label>نام کامل</label>
-                <input type="text" id="profileFullname" value="Mahdi Amolimoghaddam">
-            </div>
-            <div>
-                <label>شماره تلفن</label>
-                <input type="tel" id="profilePhone" value="+98 915 030 7005">
-            </div>
-            <div>
-                <label>بیوگرافی</label>
-                <textarea id="profileBio" rows="2">تلفن همراه: beaconchain_horizon@ | گیت‌هاب: beaconchain_horizon</textarea>
-            </div>
-            <div>
-                <label>رنگ مورد علاقه</label>
-                <input type="color" id="profileColor" value="#4f9eff">
-            </div>
-            <div>
-                <label>کد ملی</label>
-                <input type="text" id="profileNationalId" value="0941667286">
-            </div>
-        </div>
-        <button class="btn" onclick="saveProfile()"><i class="fas fa-save"></i> ذخیره تغییرات</button>
-    </div>
+  <!-- دکمه‌های مدیریت -->
+  <div class="glass" style="display:flex; gap:1rem; flex-wrap:wrap;">
+    <button class="btn" id="deployBtn"><i class="fas fa-rocket"></i> Deploy (شبیه‌سازی)</button>
+    <button class="btn btn-outline" id="exportBtn"><i class="fas fa-download"></i> دریافت گزارش</button>
+    <button class="btn btn-danger" id="resetBtn"><i class="fas fa-trash"></i> ریست فروشگاه</button>
+  </div>
 
-    <!-- ===== BIOGRAPHY SECTION (اضافه شد) ===== -->
-    <div class="card bio-card" style="margin-top:1.5rem;">
-        <h3><i class="fas fa-user-astronaut"></i> درباره‌ی بنیان‌گذار</h3>
-        <div style="font-size:0.9rem; line-height:1.8; color:#d4dcff;">
-            <p><strong>نام:</strong> مهدی آملی مقدم</p>
-            <p><strong>نام کاربری:</strong> <code>Beaconchain_horizon</code></p>
-            <p><strong>سمت:</strong> بنیان‌گذار و توسعه‌دهنده ارشد پروژه‌ی Horizon (Beaconchain)</p>
-            <p><strong>مکان:</strong> مشهد، ایران</p>
-            <p><strong>وب‌سایت:</strong> <a href="https://beaconchain.us" target="_blank" style="color:#4f9eff;">beaconchain.us</a></p>
-            <p><strong>تلگرام:</strong> <a href="https://t.me/Beaconchain_horizon" target="_blank" style="color:#4f9eff;">@Beaconchain_horizon</a></p>
-            <p><strong>گیت‌هاب:</strong> <a href="https://github.com/beaconchain-horizon" target="_blank" style="color:#4f9eff;">beaconchain-horizon</a></p>
-            <hr style="border-color:rgba(79,158,255,0.2); margin:0.8rem 0;">
-            <p style="color:#bfd6ff;">🧠 من <strong>مهدی آملی مقدم</strong> هستم، بنیان‌گذار و معماری پروژه‌ی <strong>Horizon (Beaconchain)</strong> – یک پلتفرم متن‌باز و آفلاین‌اول برای مانیتورینگ بلاک‌چین که در سطح جهانی به <strong>رتبه‌ی سوم</strong> دست یافته است.</p>
-            <p style="color:#bfd6ff;">از ابتدا، هدف من ایجاد <strong>زیرساختی امن، شفاف و مستقل</strong> بوده است؛ پلتفرمی که نه‌تنها داده‌های زنده‌ی شبکه‌های بلاک‌چین را با سرعت و دقت بالا ارائه دهد، بلکه بتواند بدون وابستگی به سرورهای متمرکز و با معماری <strong>Offline-First</strong>، در هر شرایطی کار کند.</p>
-            <hr style="border-color:rgba(79,158,255,0.2); margin:0.8rem 0;">
-            <p><strong>🏆 دستاوردهای کلیدی:</strong></p>
-            <ul style="list-style:none; padding-right:0.5rem;">
-                <li>✅ رتبه‌ی ۳ جهانی در میان کاوشگرهای بلاک‌چین (ارزیابی می ۲۰۲۶)</li>
-                <li>✅ امتیاز امنیت ۱۰/۱۰ – تنها پروژه با این سطح از امنیت</li>
-                <li>✅ پشتیبانی هم‌زمان از ۱۰۰,۰۰۰+ اعتبارسنج با زمان پاسخ‌گویی ۷۲ میلی‌ثانیه</li>
-                <li>✅ طراحی و پیاده‌سازی لایسنس‌های Merkle‑Verified با امضای ECDSA</li>
-                <li>✅ توسعه‌ی فروشگاه رسمی Horizon با سیستم پرداخت ارز دیجیتال و پروفایل کاربری</li>
-            </ul>
-            <hr style="border-color:rgba(79,158,255,0.2); margin:0.8rem 0;">
-            <p style="color:#bfd6ff;">🌍 من به <strong>شفافیت، امنیت و استقلال</strong> در فناوری بلاک‌چین باور دارم. Horizon پاسخی است به نیاز صنعت برای ابزارهایی که بدون وابستگی به شرکت‌های بزرگ، قابل اعتماد و در دسترس باشند.</p>
-            <p style="color:#bfd6ff;">هدف من این است که Horizon را به <strong>استاندارد طلایی مانیتورینگ بلاک‌چین</strong> تبدیل کنم و آن را به یک پلتفرم مقیاس‌پذیر برای <strong>۱ میلیون تراکنش در ثانیه</strong> برسانم.</p>
-            <hr style="border-color:rgba(79,158,255,0.2); margin:0.8rem 0;">
-            <p style="font-size:0.85rem; color:#99a9dd;">«ساخته‌شده در مشهد، با هدف شفافیت و استقلال»<br>— مهدی آملی مقدم</p>
-        </div>
-    </div>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="footer-section">
-            <h4><i class="fas fa-users"></i> جامعه</h4>
-            <a href="/docs"><i class="fas fa-book"></i> مستندات API</a>
-            <a href="/status"><i class="fas fa-signal"></i> وضعیت شبکه</a>
-            <a href="/newsletter"><i class="fas fa-envelope"></i> خبرنامه</a>
-            <a href="/wiki"><i class="fas fa-graduation-cap"></i> دانشنامه</a>
-            <a href="/support"><i class="fas fa-headset"></i> درخواست پشتیبانی</a>
-        </div>
-        <div class="footer-section">
-            <h4><i class="fas fa-cubes"></i> محصولات</h4>
-            <a href="/premium"><i class="fas fa-crown"></i> Horizon Premium</a>
-            <a href="/advertise"><i class="fas fa-ad"></i> تبلیغات در Horizon</a>
-            <a href="/explorer-as-service"><i class="fas fa-server"></i> Explorer as a Service</a>
-            <a href="/api-plans"><i class="fas fa-code"></i> پلن‌های API</a>
-            <a href="/priority-support"><i class="fas fa-star"></i> پشتیبانی اولویت‌دار</a>
-        </div>
-        <div class="footer-section">
-            <h4><i class="fas fa-share-alt"></i> شبکه‌های اجتماعی</h4>
-            <a href="https://github.com/beaconchain-horizon" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://t.me/Beaconchain_horizon" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-            <a href="https://twitter.com/beaconchain" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="https://linkedin.com/company/beaconchain" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://youtube.com/beaconchain" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        </div>
-        <div class="footer-section">
-            <h4><i class="fas fa-info-circle"></i> درباره</h4>
-            <div class="ownership-note">
-                © ۱۴۰۵ Horizon Store – فروشگاه رسمی Beaconchain<br>
-                رتبه ۳ جهانی · امتیاز امنیت ۱۰/۱۰<br>
-                <strong>بنیان‌گذار: مهدی آملی مقدم</strong><br>
-                <span style="font-size:0.6rem;">ساخته‌شده در مشهد، ایران – با هدف شفافیت و استقلال</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ===== DIGITAL SIGNATURE ===== -->
-    <div class="digital-signature-box">
-        <h3><i class="fas fa-fingerprint"></i> امضای دیجیتال</h3>
-        <p>Page fingerprint: <code id="pageHash" style="color:#c084fc; word-break:break-all;"></code></p>
-        <p style="font-size:0.85rem;">تأیید یکپارچگی داده‌ها با SHA-256</p>
-        <div id="offlineStatus" style="margin-top:0.5rem;">
-            <span id="statusIndicator" class="badge"><i class="fas fa-wifi"></i> Online</span>
-        </div>
-    </div>
-</div>
-
-<!-- ===== MODAL ===== -->
-<div class="modal" id="authModal">
-    <div class="modal-content">
-        <h2 id="modalTitle">ورود / ثبت‌نام</h2>
-        <input type="text" id="authName" placeholder="نام کامل">
-        <input type="email" id="authEmail" placeholder="ایمیل">
-        <input type="password" id="authPassword" placeholder="رمز عبور">
-        <button class="btn" id="authSubmitBtn" onclick="handleAuth()">ورود</button>
-        <button class="btn btn-outline" onclick="closeModal()" style="margin-top:0.5rem;">بستن</button>
-    </div>
+  <div style="text-align:center; font-size:0.7rem; color:#6c7b9e; padding:1rem 0;">
+    © ۲۰۲۶ Horizon · نظارت ارشد: Mahdi Amolimoghaddam
+  </div>
 </div>
 
 <script>
-    // ============================================================
-    // 1. AUTH
-    // ============================================================
-    let currentUser = null;
-    function openModal(mode) {
-        document.getElementById('authModal').classList.add('active');
-        document.getElementById('modalTitle').innerText = mode === 'login' ? 'ورود' : 'ثبت‌نام';
-        document.getElementById('authSubmitBtn').innerText = mode === 'login' ? 'ورود' : 'ثبت‌نام';
-        document.getElementById('authSubmitBtn').dataset.mode = mode;
-    }
-    function closeModal() { document.getElementById('authModal').classList.remove('active'); }
-    function handleAuth() {
-        const name = document.getElementById('authName').value;
-        const email = document.getElementById('authEmail').value;
-        const pass = document.getElementById('authPassword').value;
-        const mode = document.getElementById('authSubmitBtn').dataset.mode;
-        if (!email || !pass) { alert('لطفاً ایمیل و رمز عبور را وارد کنید.'); return; }
-        currentUser = { name: name || 'کاربر', email };
-        alert(`✅ ${mode === 'login' ? 'ورود' : 'ثبت‌نام'} موفق! خوش آمدید ${currentUser.name}`);
-        closeModal();
-        document.querySelector('.badge-group').innerHTML += `<span class="badge"><i class="fas fa-user-check"></i> ${currentUser.name}</span>`;
-    }
+  // =============================================================
+  // ۱. داده‌های محصولات (واقعی)
+  // =============================================================
+  const products = [
+    { name: 'Horizon Wallet', version: '3.2.1', price: 'رایگان', icon: 'fa-wallet', apk: '#' },
+    { name: 'Horizon Dashboard', version: '2.5.0', price: '۰.۰۱۵ ETH', icon: 'fa-chart-pie', apk: '#' },
+    { name: 'Validator License', version: '1.1.3', price: '۰.۰۰۲ ETH/ماه', icon: 'fa-shield-alt', apk: '#' },
+    { name: 'Horizon Node', version: '0.9.0', price: '۰.۰۵ ETH', icon: 'fa-server', apk: '#' }
+  ];
 
-    // ============================================================
-    // 2. PROFILE
-    // ============================================================
-    function saveProfile() {
-        const profile = {
-            username: document.getElementById('profileUsername').value,
-            fullname: document.getElementById('profileFullname').value,
-            phone: document.getElementById('profilePhone').value,
-            bio: document.getElementById('profileBio').value,
-            color: document.getElementById('profileColor').value,
-            nationalId: document.getElementById('profileNationalId').value,
-        };
-        localStorage.setItem('horizon_profile', JSON.stringify(profile));
-        alert('✅ اطلاعات پروفایل ذخیره شد.');
-    }
+  // =============================================================
+  // ۲. رندر محصولات
+  // =============================================================
+  function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = products.map(p => `
+      <div class="product-card">
+        <div class="icon"><i class="fas ${p.icon}"></i></div>
+        <div class="name">${p.name}</div>
+        <div style="font-size:0.7rem; color:#8fa2dc;">نسخه ${p.version}</div>
+        <div class="price">${p.price}</div>
+        <button class="btn buy-btn" data-apk="${p.apk}" data-name="${p.name}" data-price="${p.price}"><i class="fas fa-shopping-cart"></i> خرید</button>
+      </div>
+    `).join('');
 
-    function loadProfile() {
-        const saved = localStorage.getItem('horizon_profile');
-        if (saved) {
-            const p = JSON.parse(saved);
-            document.getElementById('profileUsername').value = p.username || 'Beaconchain_horizon';
-            document.getElementById('profileFullname').value = p.fullname || 'Mahdi Amolimoghaddam';
-            document.getElementById('profilePhone').value = p.phone || '+98 915 030 7005';
-            document.getElementById('profileBio').value = p.bio || 'تلفن همراه: beaconchain_horizon@ | گیت‌هاب: beaconchain_horizon';
-            document.getElementById('profileColor').value = p.color || '#4f9eff';
-            document.getElementById('profileNationalId').value = p.nationalId || '0941667286';
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const name = this.dataset.name;
+        const price = this.dataset.price;
+        if (!window.ethereum) {
+          alert('⚠️ متامسک نصب نیست. لطفاً نصب کنید.');
+          return;
         }
-    }
-
-    window.addEventListener('load', function() {
-        loadProfile();
+        alert(`🛒 خرید ${name} به مبلغ ${price} در شرف انجام است.\nلطفاً در متامسک تراکنش را تأیید کنید.`);
+        // اینجا کد واقعی پرداخت با متامسک قرار می‌گیرد
+        addLog(`خرید ${name} (${price})`, 'success');
+      });
     });
+  }
 
-    // ============================================================
-    // 3. PRODUCT (خرید مشتری فعال)
-    // ============================================================
-    function buyProduct(name, price) {
-        if (!currentUser) { alert('لطفاً ابتدا وارد شوید.'); openModal('login'); return; }
-        const confirmBuy = confirm(`آیا از خرید "${name}" به مبلغ $${price} اطمینان دارید؟`);
-        if (confirmBuy) {
-            alert(`✅ خرید "${name}" با موفقیت ثبت شد.\nمبلغ $${price} باید به کیف پول زیر واریز شود:\n0x4E94F10F0a34a0DF229e68d5902644046258D678\nپس از واریز، API Key برای شما ارسال می‌شود.`);
-        }
+  // =============================================================
+  // ۳. اتصال ولت (متامسک)
+  // =============================================================
+  document.getElementById('connectBtn').addEventListener('click', async () => {
+    const display = document.getElementById('walletDisplay');
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const address = accounts[0];
+        display.innerHTML = `🟢 ${address.slice(0,6)}…${address.slice(-4)}`;
+        display.style.borderColor = '#4ade80';
+        addLog(`ولت متصل شد: ${address.slice(0,10)}...`, 'success');
+      } catch (err) {
+        display.innerHTML = '🔴 دسترسی رد شد';
+        addLog('اتصال ولت رد شد', 'danger');
+      }
+    } else {
+      display.innerHTML = '⚠️ متامسک نصب نیست';
+      addLog('متامسک نصب نیست', 'warning');
     }
-    function contactSales(pkg) {
-        alert(`📩 درخواست مشاوره برای پکیج "${pkg}" ثبت شد.\nتیم فروش Horizon با شما تماس می‌گیرد.`);
-        window.location.href = `mailto:beaconchain@beaconchain.us?subject=درخواست مشاوره - ${pkg}`;
+  });
+
+  // =============================================================
+  // ۴. قیمت‌های لحظه‌ای (از CoinGecko)
+  // =============================================================
+  async function fetchPrices() {
+    try {
+      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+      const data = await res.json();
+      document.getElementById('btcPrice').textContent = `$${data.bitcoin.usd.toLocaleString()}`;
+      document.getElementById('ethPrice').textContent = `$${data.ethereum.usd.toLocaleString()}`;
+    } catch (e) {
+      document.getElementById('btcPrice').textContent = '⚠️';
+      document.getElementById('ethPrice').textContent = '⚠️';
     }
+    // قیمت دلار (شبیه‌سازی)
+    document.getElementById('usdPrice').textContent = '۴۲,۵۰۰ تومان';
+  }
+  fetchPrices();
+  setInterval(fetchPrices, 60000);
 
-    // ============================================================
-    // 4. VALIDATORS
-    // ============================================================
-    const TOTAL = 100000;
-    let allValidators = [];
-    let filtered = [];
-    for (let i = 1; i <= TOTAL; i++) {
-        const r = Math.random();
-        const status = r < 0.08 ? 'offline' : (r < 0.12 ? 'pending' : 'online');
-        const balance = 32 + Math.random() * 8;
-        allValidators.push({ index: i, status, balance: parseFloat(balance.toFixed(2)) });
+  // =============================================================
+  // ۵. مدیریت لاگ‌ها
+  // =============================================================
+  function addLog(message, type = 'info') {
+    const container = document.getElementById('logContainer');
+    const div = document.createElement('div');
+    div.className = 'log-item';
+    const icons = { info: '🔵', warning: '🟡', danger: '🔴', success: '🟢' };
+    div.innerHTML = `<span>${icons[type] || '🔵'} ${message}</span><div class="log-time">${new Date().toLocaleTimeString('fa-IR')}</div>`;
+    container.prepend(div);
+    if (container.children.length > 20) container.removeChild(container.lastChild);
+  }
+
+  document.getElementById('addTxBtn').addEventListener('click', () => {
+    addLog('تراکنش نمونه اضافه شد (شبیه‌سازی)', 'info');
+  });
+
+  // =============================================================
+  // ۶. دکمه‌های مدیریت
+  // =============================================================
+  document.getElementById('deployBtn').addEventListener('click', () => {
+    addLog('🚀 فرایند Deploy شبیه‌سازی شد.', 'success');
+    alert('✅ فروشگاه با موفقیت Deploy شد (شبیه‌سازی).');
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const report = {
+      store: 'Horizon Store',
+      version: '1.0.0',
+      products: products,
+      timestamp: new Date().toISOString(),
+      supervisor: 'Mahdi Amolimoghaddam'
+    };
+    const blob = new Blob([JSON.stringify(report, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `horizon_store_report_${Date.now()}.json`;
+    a.click();
+    addLog('گزارش فروشگاه دانلود شد', 'success');
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if (confirm('⚠️ همه‌ی داده‌های فروشگاه ریست می‌شوند. ادامه؟')) {
+      localStorage.clear();
+      addLog('🔄 فروشگاه ریست شد', 'danger');
+      alert('✅ فروشگاه به حالت اولیه بازگشت.');
+      location.reload();
     }
-    filtered = [...allValidators];
+  });
 
-    const listEl = document.getElementById('validatorList');
-    const searchInput = document.getElementById('searchInput');
-    const resetBtn = document.getElementById('resetBtn');
-
-    function renderValidators(filter = '') {
-        const query = filter.trim().toLowerCase();
-        let f = allValidators;
-        if (query) { const num = parseInt(query); if (!isNaN(num)) f = allValidators.filter(v => v.index === num); }
-        else f = allValidators;
-        filtered = f;
-        const total = f.length;
-        const online = f.filter(v => v.status === 'online').length;
-        const offline = f.filter(v => v.status === 'offline').length;
-        const avg = (f.reduce((s, v) => s + v.balance, 0) / total) || 0;
-        document.getElementById('totalValidators').innerText = total.toLocaleString();
-        document.getElementById('onlineCount').innerText = online.toLocaleString();
-        document.getElementById('offlineCount').innerText = offline.toLocaleString();
-        document.getElementById('avgBalance').innerText = avg.toFixed(2) + ' ETH';
-
-        const show = f.slice(0, 200);
-        let html = '';
-        show.forEach(v => {
-            const icon = v.status === 'online' ? '🟢' : (v.status === 'offline' ? '🔴' : '🟡');
-            const cls = v.status === 'online' ? 'status-online' : (v.status === 'offline' ? 'status-offline' : 'status-pending');
-            html += `<div class="validator-item">
-                <span class="validator-index">#${v.index.toLocaleString()}</span>
-                <span><span class="${cls}">${icon} ${v.status}</span></span>
-                <span class="balance">${v.balance} ETH</span>
-            </div>`;
-        });
-        if (f.length > 200) html += `<div class="validator-item" style="justify-content:center;opacity:0.6;">+ ${f.length - 200} validator دیگر ...</div>`;
-        listEl.innerHTML = html || '<div style="text-align:center;padding:2rem;">هیچ اعتبارسنجی یافت نشد</div>';
-    }
-
-    searchInput.addEventListener('input', () => renderValidators(searchInput.value));
-    resetBtn.addEventListener('click', () => { searchInput.value = ''; renderValidators(''); });
-    renderValidators('');
-
-    // ============================================================
-    // 5. DIGITAL SIGNATURE
-    // ============================================================
-    async function computeHash() {
-        const content = document.getElementById('mainContent').outerHTML;
-        const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(content));
-        const hex = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-        document.getElementById('pageHash').textContent = hex;
-    }
-    window.addEventListener('load', computeHash);
-
-    function updateOnlineStatus() {
-        const el = document.getElementById('statusIndicator');
-        if (navigator.onLine) { el.innerHTML = '<i class="fas fa-wifi"></i> Online'; el.style.borderColor = '#4ade80'; }
-        else { el.innerHTML = '<i class="fas fa-wifi-slash"></i> Offline (cached)'; el.style.borderColor = '#facc15'; }
-    }
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-    updateOnlineStatus();
-
-    console.log('✅ Horizon Store loaded successfully.');
-    console.log('📁 Author: Mahdi Amolimoghaddam');
+  // =============================================================
+  // ۷. بارگذاری اولیه
+  // =============================================================
+  renderProducts();
+  addLog('🚀 فروشگاه Horizon راه‌اندازی شد', 'success');
 </script>
 </body>
 </html>
