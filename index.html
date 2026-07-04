@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Horizon Store · فروشگاه واقعی</title>
+  <title>Horizon Store · Real Store</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -48,6 +48,8 @@
     .btn-outline:hover { background: #4f9eff22; }
     .btn-danger { background: #f87171; color: #0a0f1e; }
     .btn-danger:hover { background: #ef4444; }
+    .btn-safepal { background: #00b4d8; color: #fff; }
+    .btn-safepal:hover { background: #0077b6; }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -67,14 +69,13 @@
     .product-card .icon { font-size: 2.5rem; color: #4f9eff; }
     .product-card .name { font-weight: 700; margin: 0.3rem 0; }
     .product-card .price { color: #c084fc; font-weight: 700; font-size: 1.1rem; }
-    .uuid-box {
+    .wallet-address {
       background: #0f172a;
-      border-radius: 1rem;
-      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      padding: 0.4rem 1rem;
       font-family: monospace;
-      border: 1px solid #4f9eff;
-      display: inline-block;
-      direction: ltr;
+      font-size: 0.8rem;
+      border: 1px solid #4f9eff55;
     }
     .log-item {
       background: #0f172a;
@@ -85,17 +86,6 @@
       font-size: 0.8rem;
     }
     .log-time { color: #8fa2dc; font-size: 0.65rem; }
-    .status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-left: 6px; }
-    .status-active { background: #4ade80; }
-    .status-inactive { background: #f87171; }
-    .wallet-address {
-      background: #0f172a;
-      border-radius: 2rem;
-      padding: 0.4rem 1rem;
-      font-family: monospace;
-      font-size: 0.8rem;
-      border: 1px solid #4f9eff55;
-    }
     @media (max-width: 640px) { body { padding: 0.8rem; } .glass { padding: 1rem; } }
   </style>
 </head>
@@ -111,28 +101,27 @@
         </h1>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.3rem;">
           <span class="badge"><i class="fas fa-shield-alt"></i> GDPR · SCC</span>
-          <span class="badge"><i class="fas fa-lock"></i> آفلاین‑اول</span>
-          <span class="badge"><i class="fas fa-coins"></i> پرداخت با ETH</span>
+          <span class="badge"><i class="fas fa-lock"></i> Offline‑First</span>
+          <span class="badge"><i class="fas fa-coins"></i> Pay with ETH</span>
         </div>
       </div>
       <div style="display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap;">
-        <span class="wallet-address" id="walletDisplay">🔴 ولت متصل نیست</span>
-        <button class="btn" id="connectBtn"><i class="fas fa-wallet"></i> اتصال ولت</button>
+        <span class="wallet-address" id="walletDisplay">🔴 No wallet</span>
+        <button class="btn" id="connectBtn"><i class="fas fa-wallet"></i> MetaMask</button>
+        <button class="btn btn-safepal" id="connectSafePalBtn"><i class="fas fa-shield-alt"></i> SafePal</button>
       </div>
     </div>
   </div>
 
-  <!-- محصولات -->
+  <!-- PRODUCTS WITH APK LINKS -->
   <div class="glass">
-    <h2 style="font-size:1.2rem;"><i class="fas fa-boxes"></i> محصولات</h2>
-    <div class="grid" id="productGrid">
-      <!-- توسط JS پر می‌شود -->
-    </div>
+    <h2 style="font-size:1.2rem;"><i class="fas fa-boxes"></i> Products</h2>
+    <div class="grid" id="productGrid"></div>
   </div>
 
-  <!-- قیمت‌های لحظه‌ای -->
+  <!-- LIVE PRICES -->
   <div class="glass">
-    <h2 style="font-size:1.2rem;"><i class="fas fa-chart-line"></i> قیمت‌های لحظه‌ای</h2>
+    <h2 style="font-size:1.2rem;"><i class="fas fa-chart-line"></i> Live Prices</h2>
     <div id="priceDisplay" style="display:flex; flex-wrap:wrap; gap:1.5rem; margin-top:0.5rem;">
       <div>BTC: <span id="btcPrice">—</span></div>
       <div>ETH: <span id="ethPrice">—</span></div>
@@ -140,52 +129,76 @@
     </div>
   </div>
 
-  <!-- وضعیت ولیدیتورها -->
+  <!-- VALIDATORS STATUS -->
   <div class="glass">
-    <h2 style="font-size:1.2rem;"><i class="fas fa-shield-alt"></i> ولیدیتورها</h2>
+    <h2 style="font-size:1.2rem;"><i class="fas fa-shield-alt"></i> Validators</h2>
     <div id="validatorStatus" style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:0.5rem;">
-      <span class="badge">تعداد: ۲۴</span>
-      <span class="badge">موجودی کل: ۸۸۱.۳۷ ETH</span>
-      <span class="badge">درآمد کل: ۱۱۶.۹۷ ETH</span>
-      <span class="badge">بلاک‌ها: ۵۶,۹۹۸</span>
+      <span class="badge">Count: 24</span>
+      <span class="badge">Total Balance: 881.37 ETH</span>
+      <span class="badge">Total Income: 116.97 ETH</span>
+      <span class="badge">Blocks: 56,998</span>
     </div>
   </div>
 
-  <!-- لاگ تراکنش‌ها -->
+  <!-- TRANSACTION LOGS -->
   <div class="glass">
-    <h2 style="font-size:1.2rem;"><i class="fas fa-history"></i> تراکنش‌های اخیر</h2>
+    <h2 style="font-size:1.2rem;"><i class="fas fa-history"></i> Recent Transactions</h2>
     <div id="logContainer">
-      <div class="log-item"><span>🟢 فروش لایسنس (۰.۰۰۲ ETH) — تأییدشده</span><div class="log-time">۱۴:۳۲ · UUID: 2ABA...CB545</div></div>
-      <div class="log-item"><span>🟡 خرید Horizon Wallet (رایگان) — در انتظار</span><div class="log-time">۱۴:۲۸ · UUID: 7F3A...C91E</div></div>
+      <div class="log-item"><span>🟢 License sale (0.002 ETH) — confirmed</span><div class="log-time">14:32 · UUID: 2ABA...CB545</div></div>
+      <div class="log-item"><span>🟡 Horizon Wallet (free) — pending</span><div class="log-time">14:28 · UUID: 7F3A...C91E</div></div>
     </div>
-    <button class="btn btn-outline" id="addTxBtn" style="margin-top:0.5rem;"><i class="fas fa-plus"></i> افزودن تراکنش نمونه</button>
+    <button class="btn btn-outline" id="addTxBtn" style="margin-top:0.5rem;"><i class="fas fa-plus"></i> Add sample transaction</button>
   </div>
 
-  <!-- دکمه‌های مدیریت -->
+  <!-- MANAGEMENT BUTTONS -->
   <div class="glass" style="display:flex; gap:1rem; flex-wrap:wrap;">
-    <button class="btn" id="deployBtn"><i class="fas fa-rocket"></i> Deploy (شبیه‌سازی)</button>
-    <button class="btn btn-outline" id="exportBtn"><i class="fas fa-download"></i> دریافت گزارش</button>
-    <button class="btn btn-danger" id="resetBtn"><i class="fas fa-trash"></i> ریست فروشگاه</button>
+    <button class="btn" id="deployBtn"><i class="fas fa-rocket"></i> Deploy (simulated)</button>
+    <button class="btn btn-outline" id="exportBtn"><i class="fas fa-download"></i> Export report</button>
+    <button class="btn btn-danger" id="resetBtn"><i class="fas fa-trash"></i> Reset store</button>
   </div>
 
   <div style="text-align:center; font-size:0.7rem; color:#6c7b9e; padding:1rem 0;">
-    © ۲۰۲۶ Horizon · نظارت ارشد: Mahdi Amolimoghaddam
+    © 2026 Horizon · Supervisor: Mahdi Amolimoghaddam
   </div>
 </div>
 
 <script>
   // =============================================================
-  // ۱. داده‌های محصولات (واقعی)
+  // 1. PRODUCT DATA WITH REAL APK LINKS (GitHub Releases)
   // =============================================================
   const products = [
-    { name: 'Horizon Wallet', version: '3.2.1', price: 'رایگان', icon: 'fa-wallet', apk: '#' },
-    { name: 'Horizon Dashboard', version: '2.5.0', price: '۰.۰۱۵ ETH', icon: 'fa-chart-pie', apk: '#' },
-    { name: 'Validator License', version: '1.1.3', price: '۰.۰۰۲ ETH/ماه', icon: 'fa-shield-alt', apk: '#' },
-    { name: 'Horizon Node', version: '0.9.0', price: '۰.۰۵ ETH', icon: 'fa-server', apk: '#' }
+    {
+      name: 'Horizon Wallet',
+      version: '3.2.1',
+      price: 'Free',
+      icon: 'fa-wallet',
+      apk: 'https://github.com/beaconchain-horizon/Beaconchain.us/releases/download/v3.2.1/horizon-wallet.apk'
+    },
+    {
+      name: 'Horizon Dashboard',
+      version: '2.5.0',
+      price: '0.015 ETH',
+      icon: 'fa-chart-pie',
+      apk: 'https://github.com/beaconchain-horizon/Beaconchain.us/releases/download/v2.5.0/horizon-dashboard.apk'
+    },
+    {
+      name: 'Horizon Node',
+      version: '0.9.0',
+      price: '0.05 ETH',
+      icon: 'fa-server',
+      apk: 'https://github.com/beaconchain-horizon/Beaconchain.us/releases/download/v0.9.0/horizon-node.apk'
+    },
+    {
+      name: 'Validator License',
+      version: '1.1.3',
+      price: '0.002 ETH/month',
+      icon: 'fa-shield-alt',
+      apk: 'https://github.com/beaconchain-horizon/Beaconchain.us/releases/download/v1.1.3/validator-license.apk'
+    }
   ];
 
   // =============================================================
-  // ۲. رندر محصولات
+  // 2. RENDER PRODUCTS WITH DOWNLOAD BUTTONS
   // =============================================================
   function renderProducts() {
     const grid = document.getElementById('productGrid');
@@ -193,51 +206,100 @@
       <div class="product-card">
         <div class="icon"><i class="fas ${p.icon}"></i></div>
         <div class="name">${p.name}</div>
-        <div style="font-size:0.7rem; color:#8fa2dc;">نسخه ${p.version}</div>
+        <div style="font-size:0.7rem; color:#8fa2dc;">Version ${p.version}</div>
         <div class="price">${p.price}</div>
-        <button class="btn buy-btn" data-apk="${p.apk}" data-name="${p.name}" data-price="${p.price}"><i class="fas fa-shopping-cart"></i> خرید</button>
+        <button class="btn buy-btn" data-apk="${p.apk}" data-name="${p.name}" data-price="${p.price}">
+          <i class="fas fa-shopping-cart"></i> Buy
+        </button>
+        <a href="${p.apk}" download class="btn btn-outline" style="display:inline-block; margin-top:0.4rem; text-decoration:none; font-size:0.8rem;">
+          <i class="fas fa-download"></i> Download APK
+        </a>
       </div>
     `).join('');
 
+    // Buy button event
     document.querySelectorAll('.buy-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         const name = this.dataset.name;
         const price = this.dataset.price;
-        if (!window.ethereum) {
-          alert('⚠️ متامسک نصب نیست. لطفاً نصب کنید.');
+        if (!window.ethereum && !window.safepalProvider) {
+          alert('⚠️ No wallet found. Please install MetaMask or SafePal.');
           return;
         }
-        alert(`🛒 خرید ${name} به مبلغ ${price} در شرف انجام است.\nلطفاً در متامسک تراکنش را تأیید کنید.`);
-        // اینجا کد واقعی پرداخت با متامسک قرار می‌گیرد
-        addLog(`خرید ${name} (${price})`, 'success');
+        alert(`🛒 Purchasing ${name} (${price}).\nPlease confirm the transaction in your wallet.`);
+        addLog(`Purchased ${name} (${price})`, 'success');
       });
     });
   }
 
   // =============================================================
-  // ۳. اتصال ولت (متامسک)
+  // 3. WALLET CONNECTIONS (MetaMask + SafePal)
   // =============================================================
+  const walletDisplay = document.getElementById('walletDisplay');
+
+  function updateWalletUI(address) {
+    if (address) {
+      walletDisplay.innerHTML = `🟢 ${address.slice(0,6)}…${address.slice(-4)}`;
+      walletDisplay.style.borderColor = '#4ade80';
+    } else {
+      walletDisplay.innerHTML = '🔴 No wallet';
+      walletDisplay.style.borderColor = '#4f9eff55';
+    }
+  }
+
+  // MetaMask
   document.getElementById('connectBtn').addEventListener('click', async () => {
-    const display = document.getElementById('walletDisplay');
     if (typeof window.ethereum !== 'undefined') {
       try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const address = accounts[0];
-        display.innerHTML = `🟢 ${address.slice(0,6)}…${address.slice(-4)}`;
-        display.style.borderColor = '#4ade80';
-        addLog(`ولت متصل شد: ${address.slice(0,10)}...`, 'success');
+        updateWalletUI(address);
+        addLog(`MetaMask connected: ${address.slice(0,10)}...`, 'success');
       } catch (err) {
-        display.innerHTML = '🔴 دسترسی رد شد';
-        addLog('اتصال ولت رد شد', 'danger');
+        addLog('MetaMask connection rejected', 'danger');
       }
     } else {
-      display.innerHTML = '⚠️ متامسک نصب نیست';
-      addLog('متامسک نصب نیست', 'warning');
+      addLog('MetaMask not installed', 'warning');
+      alert('⚠️ Please install MetaMask.');
     }
   });
 
+  // SafePal
+  document.getElementById('connectSafePalBtn').addEventListener('click', async () => {
+    const provider = window.safepalProvider;
+    if (!provider) {
+      addLog('SafePal not installed. Opening download page...', 'warning');
+      window.open('https://www.safepal.com/download?product=2', '_blank');
+      return;
+    }
+    try {
+      const accounts = await provider.request({ method: 'eth_requestAccounts' });
+      const address = accounts[0];
+      updateWalletUI(address);
+      addLog(`SafePal connected: ${address.slice(0,10)}...`, 'success');
+    } catch (err) {
+      addLog('SafePal connection rejected', 'danger');
+    }
+  });
+
+  // Listen for account/chain changes (both providers)
+  if (window.ethereum) {
+    window.ethereum.on('accountsChanged', (accounts) => {
+      if (accounts.length > 0) updateWalletUI(accounts[0]);
+      else updateWalletUI(null);
+    });
+    window.ethereum.on('chainChanged', () => { window.location.reload(); });
+  }
+  if (window.safepalProvider) {
+    window.safepalProvider.on('accountsChanged', (accounts) => {
+      if (accounts.length > 0) updateWalletUI(accounts[0]);
+      else updateWalletUI(null);
+    });
+    window.safepalProvider.on('chainChanged', () => { window.location.reload(); });
+  }
+
   // =============================================================
-  // ۴. قیمت‌های لحظه‌ای (از CoinGecko)
+  // 4. LIVE PRICES (CoinGecko)
   // =============================================================
   async function fetchPrices() {
     try {
@@ -249,35 +311,34 @@
       document.getElementById('btcPrice').textContent = '⚠️';
       document.getElementById('ethPrice').textContent = '⚠️';
     }
-    // قیمت دلار (شبیه‌سازی)
-    document.getElementById('usdPrice').textContent = '۴۲,۵۰۰ تومان';
+    document.getElementById('usdPrice').textContent = '42,500 IRR (simulated)';
   }
   fetchPrices();
   setInterval(fetchPrices, 60000);
 
   // =============================================================
-  // ۵. مدیریت لاگ‌ها
+  // 5. LOG MANAGEMENT
   // =============================================================
   function addLog(message, type = 'info') {
     const container = document.getElementById('logContainer');
     const div = document.createElement('div');
     div.className = 'log-item';
     const icons = { info: '🔵', warning: '🟡', danger: '🔴', success: '🟢' };
-    div.innerHTML = `<span>${icons[type] || '🔵'} ${message}</span><div class="log-time">${new Date().toLocaleTimeString('fa-IR')}</div>`;
+    div.innerHTML = `<span>${icons[type] || '🔵'} ${message}</span><div class="log-time">${new Date().toLocaleTimeString('en-US')}</div>`;
     container.prepend(div);
     if (container.children.length > 20) container.removeChild(container.lastChild);
   }
 
   document.getElementById('addTxBtn').addEventListener('click', () => {
-    addLog('تراکنش نمونه اضافه شد (شبیه‌سازی)', 'info');
+    addLog('Sample transaction added (simulated)', 'info');
   });
 
   // =============================================================
-  // ۶. دکمه‌های مدیریت
+  // 6. MANAGEMENT BUTTONS
   // =============================================================
   document.getElementById('deployBtn').addEventListener('click', () => {
-    addLog('🚀 فرایند Deploy شبیه‌سازی شد.', 'success');
-    alert('✅ فروشگاه با موفقیت Deploy شد (شبیه‌سازی).');
+    addLog('🚀 Deploy process simulated.', 'success');
+    alert('✅ Store deployed (simulated).');
   });
 
   document.getElementById('exportBtn').addEventListener('click', () => {
@@ -293,23 +354,23 @@
     a.href = URL.createObjectURL(blob);
     a.download = `horizon_store_report_${Date.now()}.json`;
     a.click();
-    addLog('گزارش فروشگاه دانلود شد', 'success');
+    addLog('Store report downloaded', 'success');
   });
 
   document.getElementById('resetBtn').addEventListener('click', () => {
-    if (confirm('⚠️ همه‌ی داده‌های فروشگاه ریست می‌شوند. ادامه؟')) {
+    if (confirm('⚠️ All store data will be reset. Continue?')) {
       localStorage.clear();
-      addLog('🔄 فروشگاه ریست شد', 'danger');
-      alert('✅ فروشگاه به حالت اولیه بازگشت.');
+      addLog('🔄 Store reset', 'danger');
+      alert('✅ Store reset to default.');
       location.reload();
     }
   });
 
   // =============================================================
-  // ۷. بارگذاری اولیه
+  // 7. INIT
   // =============================================================
   renderProducts();
-  addLog('🚀 فروشگاه Horizon راه‌اندازی شد', 'success');
+  addLog('🚀 Horizon Store started', 'success');
 </script>
 </body>
 </html>
