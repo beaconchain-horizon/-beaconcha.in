@@ -1,7 +1,7 @@
 # Funding options for Beaconchain Horizon
 
-github: [beaconchain-com]
-custom: ['https://beaconchain.us/donate']
+github: [beaconchain-horizon]
+custom: ['https://beaconchain.us/donate', 'https://beaconchain-horizon.github.io/Beaconchain.us/']
 
 # حذف شده به دلیل عدم وجود حساب فعال:
 # patreon: 
